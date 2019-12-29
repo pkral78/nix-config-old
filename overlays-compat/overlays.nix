@@ -1,0 +1,1 @@
+/etc/static/nixos/overlays-compat/overlays.nix
