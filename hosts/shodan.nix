@@ -24,6 +24,14 @@ rec
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  environment.systemPackages = with pkgs; [
+    dropbox-cli
+  ];
+
+  networking.firewall = {
+    allowedTCPPorts = [ 17500 ];
+    allowedUDPPorts = [ 17500 ];
+  };
 
   services.xserver = {    
     enable = true;
