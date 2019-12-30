@@ -46,7 +46,7 @@ with pkgs.lib;
     unzip
     zip
     p7zip
-    nix-zsh-completions
+#    nix-zsh-completions
     antibody
   ];
 
