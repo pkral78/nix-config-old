@@ -92,6 +92,11 @@ rec
   };
   */
 
+  # Android ADB setup
+  programs.adb.enable = true;
+  users.users.${config.settings.username}.extraGroups = ["adbusers"];
+  services.udev.packages = [ pkgs.android-udev-rules ];
+
   programs.light.enable = true;
   services.actkbd = {
     enable = true;
