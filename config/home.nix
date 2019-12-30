@@ -47,6 +47,7 @@ with pkgs.lib;
     zip
     p7zip
     nix-zsh-completions
+    antibody
   ];
 
   /*
@@ -228,10 +229,11 @@ programs = {
   };
 */
 
-  programs.zsh = {
+  programs.zsh = rec {
     enable = true;
-    enableAutosuggestions = false;
-    enableCompletion = true;
+#    enableAutosuggestions = false;
+    # enabled by oh-my-zsh, this only ensure that compinit is not called twice
+    enableCompletion = false;
     dotDir = ".config/zsh";
     history = {
       expireDuplicatesFirst = true;
@@ -239,14 +241,22 @@ programs = {
       path = ".config/zsh/.zsh_history";
     };
 
-    plugins = [
-    ];
-    
-    oh-my-zsh = {
-      enable = true;
-      plugins = ["autojump" "colored-man-pages" "git" "gitignore" "sudo" "docker" "kubectl"];
-      theme = "agnoster";
-    };
+#    envExtra = ''
+#    ZSH=$ZDOTDIR/oh-my-zsh
+#    '';
+
+    initExtraBeforeCompInit = ''
+    source $ZDOTDIR/.shodan.zshrc
+    '';
+
+#    plugins = [
+#    ];
+
+#    oh-my-zsh = {
+#      enable = true;
+#      plugins = ["autojump" "colored-man-pages" "git" "gitignore" "sudo" "docker" "kubectl"];
+#      theme = "agnoster";
+#    };
 
     shellAliases = {
       "ll" = "ls -al";
@@ -256,8 +266,14 @@ programs = {
 
     initExtra = ''
     # hstr
-    setopt histignorespace
+    setopt hist_expire_dups_first
+    setopt hist_ignore_all_dups
+    setopt hist_ignore_space
+    setopt hist_no_store
+    setopt hist_reduce_blanks
+    setopt share_history
     bindkey -s "\C-r" "\C-a hstr -- \C-j"
+    export HSTR_CONFIG=hicolor
     export HISTFILE=$HISTFILE
     '';
 
@@ -281,8 +297,8 @@ programs = {
     */
 
     sessionVariables = {
-      EDITOR = "vim";
-      HSTR_CONFIG="hicolor";
+#      EDITOR = "vim";
+#      HSTR_CONFIG="hicolor";
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10";
     };
   };
