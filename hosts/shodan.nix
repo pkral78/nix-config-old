@@ -109,7 +109,6 @@ rec
   # Enable sound.
   sound.enable = true;
   sound.mediaKeys.enable = true;
-  hardware.pulseaudio.enable = true;
 
   services.logind.extraConfig =
   ''HandlePowerKey=suspend

@@ -83,6 +83,15 @@
 		};
 		modesetting.enable = true;
 	};
+
+   bluetooth.enable = true;
+   pulseaudio = {
+    enable = true;
+    # NixOS allows either a lightweight build (default) or full build of PulseAudio to be installed.
+    # Only the full build has Bluetooth support, so it must be selected here.
+    package = pkgs.pulseaudioFull;
+  };
+
   };
 
 services.xserver = {
