@@ -35,13 +35,19 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [    
+    bind
     curl
     docker_compose
     git
+    gnupg
     mc
     vim
     wget
-    xorg.xkill	
+    xorg.xkill
+    usbutils
+    pciutils
+    hwinfo
+    tpm2-tools
   ];
 
   environment.variables = {
