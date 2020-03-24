@@ -10,7 +10,6 @@
   boot.initrd.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_latest;  
-  boot.earlyVconsoleSetup = true;
   
   fileSystems."/" = { 
     device = "/dev/disk/by-uuid/eb0816a2-9c8a-4947-b591-913b28d8a591";
@@ -46,16 +45,25 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   # High-DPI console
-  #i18n.consoleFont = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
-  #i18n.consoleFont = "latarcyrheb-sun32";
-  i18n.consoleFont = "ter-i32b";
-  i18n.consolePackages = with pkgs; [ terminus_font ];
 # Select internationalisation properties.
   # i18n = {
   #   consoleFont = "Lat2-Terminus16";
   #   consoleKeyMap = "us";
   #   defaultLocale = "en_US.UTF-8";
-  # };  
+  # };
+
+  boot.loader.systemd-boot = {
+        configurationLimit = 5;
+        consoleMode = "keep";
+        #font = "${pkgs.powerline-fonts}/share/fonts/bdf/ter-powerline-x32n.bdf";
+        #fontSize = 32;
+  };
+  
+  console = {
+	  earlySetup = true;
+	  packages = with pkgs; [ powerline-fonts ];
+	  font = "${pkgs.powerline-fonts}/share/fonts/psf/ter-powerline-v32b.psf.gz";
+  };
 
   #hardware.facetimehd.enable = true;
   hardware = {
