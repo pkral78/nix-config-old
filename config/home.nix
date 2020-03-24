@@ -50,6 +50,13 @@ with pkgs.lib;
     antibody
   ];
 
+  services.gpg-agent = {
+    enable = true;
+    enableScDaemon = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 1800;
+    pinentryFlavor = "gnome3";
+  };
   /*
   programs.emacs.enable = true;
   services.emacs.enable = true;

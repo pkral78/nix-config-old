@@ -63,7 +63,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;  
-  programs.ssh.startAgent = true;
+  services.pcscd.enable = false;
 
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
