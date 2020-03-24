@@ -67,6 +67,10 @@
 
   #hardware.facetimehd.enable = true;
   hardware = {
+
+  nitrokey.enable = true;
+  nitrokey.group = "wheel";
+  
 	bumblebee.enable = false;
 
 	opengl = {
