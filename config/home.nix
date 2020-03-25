@@ -85,7 +85,17 @@ with pkgs.lib;
 
   programs.ssh = {
     enable = true;
-    controlPath = "~/.ssh/master-%C";
+    forwardAgent = true;
+    controlMaster = "auto";
+    controlPath = "~/.ssh/master-%r@%n:%p";
+    controlPersist = "10m";
+
+    matchBlocks = {
+      "photon" = {
+        hostname = "photon.kralovi.net";
+        user = "pkral";
+      };
+    };
   };
 
 /*
