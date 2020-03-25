@@ -104,14 +104,33 @@ with pkgs.lib;
     enable = true;
     userName = config.settings.name;
     userEmail = config.settings.email;
+    signing = {
+      key = "7B88C3748C24D98B";
+      signByDefault = false;
+    };
     aliases = {
       s = "status -s -uno";
       gl = "log --oneline --graph";
+      pullall = "!git pull --rebase && git submodule update --init --recursive";
     };
     ignores = [".#*" "*.desktop" "*.lock"];
     extraConfig = {
       branch.autosetuprebase = "never";
       push.default = "simple";
+      gc.autoDetach = false;
+      core = {
+        autocrlf = "input";
+        symlinks = true;
+        longpaths = true;
+      };
+      http.sslVerify = false;
+      log = {
+        date = "format:%Y-%m-%d %H:%M";
+      };
+      format = {
+        pretty = "format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(16,trunc)%ad %C(auto,green)%<(32,trunc)%ae%C(auto,reset)%s%C(auto,red)% gD% D";
+      };
+
     };
   };
 
