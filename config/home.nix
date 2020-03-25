@@ -32,6 +32,7 @@ with pkgs.lib;
     firefox
 #    gitAndTools.pre-commit
     google-chrome
+    brave
     home-manager
     hstr
     ispell
@@ -40,7 +41,11 @@ with pkgs.lib;
     nerdfonts
     openjdk8
     pv
-    python37
+    python38
+    python38.pkgs.pip
+    python38.pkgs.setuptools
+    python38.pkgs.wheel
+    stdenv
     tilda
     tmuxinator
     unzip
@@ -48,6 +53,18 @@ with pkgs.lib;
     p7zip
 #    nix-zsh-completions
     antibody
+    vscode
+    sublime-merge-dev
+    nitrokey-app
+    # Zephyr
+    cmake
+    ninja
+    gperf
+    ccache
+    dfu-util
+    dtc
+    xz
+    tk
   ];
 
   services.gpg-agent = {
