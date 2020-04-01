@@ -299,7 +299,7 @@ programs = {
 #    '';
 
     initExtraBeforeCompInit = ''
-    source $ZDOTDIR/.shodan.zshrc
+    source $ZDOTDIR/.shared.zshrc
     '';
 
 #    plugins = [
@@ -416,4 +416,44 @@ programs = {
     '';    
   };
 */  
+
+  home.file = {
+    ".config/zsh/.shared.zshrc" = {
+      text = ''
+      ANTIBODY_HOME="$(antibody home)"
+      ZSH_THEME="agnoster"
+
+      plugins=(
+        autojump
+        colored-man-pages
+        docker
+        git
+        gitignore
+        kubectl
+        sudo
+      )
+
+      export ZSH="$ANTIBODY_HOME/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+
+      # quit bugging me!
+      DISABLE_AUTO_UPDATE="true"
+
+      # omz!
+      source <(antibody init)
+      antibody bundle "
+        robbyrussell/oh-my-zsh
+        zsh-users/zsh-completions
+        spwhitt/nix-zsh-completions
+        zdharma/fast-syntax-highlighting
+      "
+
+      # TODO Tilda incompatability?
+      # marzocchi/zsh-notify 
+
+      setopt auto_cd
+      unsetopt correct_all
+      setopt no_flow_control
+    '';
+    };
+  };
 }
