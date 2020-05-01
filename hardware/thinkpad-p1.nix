@@ -61,8 +61,8 @@
   
   console = {
 	  earlySetup = true;
-	  packages = with pkgs; [ powerline-fonts ];
-	  font = "${pkgs.powerline-fonts}/share/consolefonts/ter-powerline-v32b.psf.gz";
+	  packages = [ pkgs.powerline-fonts ];
+	  font = "ter-powerline-v32b";
   };
 
   #hardware.facetimehd.enable = true;
