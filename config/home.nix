@@ -325,6 +325,7 @@ programs = {
     setopt hist_no_store
     setopt hist_reduce_blanks
     setopt share_history
+    setopt magicequalsubst
     bindkey -s "\C-r" "\C-a hstr -- \C-j"
     export HSTR_CONFIG=hicolor
     export HISTFILE=$HISTFILE
