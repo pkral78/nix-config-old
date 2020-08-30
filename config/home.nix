@@ -19,12 +19,12 @@ with pkgs.lib;
     autojump
     bc
     file
-    android-studio
-    jetbrains.clion
+#    android-studio
+#    jetbrains.clion
 #    datagrip
 #    golang
 #    idea-ultimate
-    jetbrains.pycharm-professional
+#    jetbrains.pycharm-professional
 #    webstorm
     coreutils
     feh
@@ -54,15 +54,8 @@ with pkgs.lib;
 #    nix-zsh-completions
     antibody
     vscode
-    sublime-merge-dev
     nitrokey-app
     # Zephyr
-    cmake
-    ninja
-    gperf
-    ccache
-    dfu-util
-    dtc
     xz
     tk
   ];
