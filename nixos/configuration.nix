@@ -49,6 +49,11 @@
     hwinfo
     tpm2-tools
   ];
+  
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
 
   environment.variables = {
 #		EDITOR = "urxvt";
