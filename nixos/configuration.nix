@@ -94,7 +94,7 @@
     createHome = true;
     home = "/home/${config.settings.username}";
     description = "${config.settings.name}";
-    extraGroups = ["audio" "docker" "networkmanager" "wheel"];
+    extraGroups = ["audio" "docker" "networkmanager" "wheel" "dialout"];
     hashedPassword = "$6$EQGBQvubTZ$um26okodYC7rw8SwnJToA.2UxawxO7ZDuf3KsCvTXbDIscDcmTxfx/YzQNYc0EEntbXGSjFA79nuzO5kaNeIz0";
     uid = 1000;
     #openssh.authorizedKeys.keys = "ssh-dss AA xxx" ];
