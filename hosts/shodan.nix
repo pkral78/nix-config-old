@@ -28,6 +28,10 @@ rec
     dropbox-cli
   ];
 
+  networking.extraHosts = ''
+    1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
+  '';
+  
   networking.firewall = {
     allowedTCPPorts = [ 17500 ];
     allowedUDPPorts = [ 17500 ];
