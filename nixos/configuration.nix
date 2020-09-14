@@ -47,7 +47,11 @@
     usbutils
     pciutils
     hwinfo
+    tcpdump
+    htop
+    rsync
     tpm2-tools
+    nixpkgs-fmt
   ];
   
   nix.extraOptions = ''
