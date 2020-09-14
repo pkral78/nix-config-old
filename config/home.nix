@@ -53,7 +53,6 @@ with pkgs.lib;
     p7zip
 #    nix-zsh-completions
     antibody
-    vscode
     nitrokey-app
     # Zephyr
     xz
@@ -84,8 +83,40 @@ with pkgs.lib;
       (setq default-frame-alist '((font . "${config.settings.fontName}-${toString config.settings.fontSize}")))
     '';
   };
-
   */
+  
+  # TODO vscode
+  # .config/Code/User/settings.json:
+  # {
+  # "remote.extensionKind": { "ms-azuretools.vscode-docker": "workspace" }
+  #
+  programs.vscode = {
+    enable = true;
+# see https://discourse.nixos.org/t/vscode-with-extensions-and-settings-using-home-manager/5747/2
+#    userSettings = {
+#      "window.zoomLevel" = 1;
+#      "git.autofetch" = false;
+#      "diffEditor.ignoreTrimWhitespace" = true;
+#      "gitlens.advanced.messages" = {
+#        "suppressFileNotUnderSourceControlWarning" = true;
+#      };
+#      "files.exclude" = {
+#        "**/.classpath" = true;
+#        "**/.project" = true;
+#        "**/.settings" = true;
+#      };
+#      "remote.SSH.defaultExtensions" = [
+#        "eamodio.gitlens"
+#      ];
+#    };
+    extensions = with pkgs.vscode-extensions; [
+      bbenoist.Nix
+      ms-vscode-remote.remote-ssh
+      ms-python.python
+      ms-vscode.cpptools
+      ms-azuretools.vscode-docker
+    ];
+  };
 
   programs.tmux = {
     enable = true;
