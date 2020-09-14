@@ -58,6 +58,8 @@ with pkgs.lib;
     # Zephyr
     xz
     tk
+    slack
+    sublime-merge-dev
   ];
 
   services.gpg-agent = {
