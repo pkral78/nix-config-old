@@ -139,6 +139,10 @@ with pkgs.lib;
         hostname = "photon.kralovi.net";
         user = "pkral";
       };
+      "photon2" = {
+        hostname = "photon2.kralovi.net";
+        user = "pkral";
+      };
     };
   };
 
