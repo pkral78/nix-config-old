@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   mod = "Mod4";
 in
@@ -11,26 +10,26 @@ with pkgs.lib;
 
   nixpkgs.config = import ./nixpkgs.nix;
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs.nix;
-  nixpkgs.overlays = [(import ../pkgs/default.nix)];
+  nixpkgs.overlays = [ (import ../pkgs/default.nix) ];
 
   home.packages = with pkgs; [
     alacritty
-#    autocutsel
+    #    autocutsel
     autojump
     bc
     file
-#    android-studio
-#    jetbrains.clion
-#    datagrip
-#    golang
-#    idea-ultimate
-#    jetbrains.pycharm-professional
-#    webstorm
+    #    android-studio
+    #    jetbrains.clion
+    #    datagrip
+    #    golang
+    #    idea-ultimate
+    #    jetbrains.pycharm-professional
+    #    webstorm
     coreutils
     feh
     ffmpeg
     firefox
-#    gitAndTools.pre-commit
+    #    gitAndTools.pre-commit
     google-chrome
     brave
     home-manager
@@ -51,7 +50,7 @@ with pkgs.lib;
     unzip
     zip
     p7zip
-#    nix-zsh-completions
+    #    nix-zsh-completions
     antibody
     jlink
     nitrokey-app
@@ -87,7 +86,7 @@ with pkgs.lib;
     '';
   };
   */
-  
+
   # TODO vscode
   # .config/Code/User/settings.json:
   # {
@@ -95,23 +94,23 @@ with pkgs.lib;
   #
   programs.vscode = {
     enable = true;
-# see https://discourse.nixos.org/t/vscode-with-extensions-and-settings-using-home-manager/5747/2
-#    userSettings = {
-#      "window.zoomLevel" = 1;
-#      "git.autofetch" = false;
-#      "diffEditor.ignoreTrimWhitespace" = true;
-#      "gitlens.advanced.messages" = {
-#        "suppressFileNotUnderSourceControlWarning" = true;
-#      };
-#      "files.exclude" = {
-#        "**/.classpath" = true;
-#        "**/.project" = true;
-#        "**/.settings" = true;
-#      };
-#      "remote.SSH.defaultExtensions" = [
-#        "eamodio.gitlens"
-#      ];
-#    };
+    # see https://discourse.nixos.org/t/vscode-with-extensions-and-settings-using-home-manager/5747/2
+    #    userSettings = {
+    #      "window.zoomLevel" = 1;
+    #      "git.autofetch" = false;
+    #      "diffEditor.ignoreTrimWhitespace" = true;
+    #      "gitlens.advanced.messages" = {
+    #        "suppressFileNotUnderSourceControlWarning" = true;
+    #      };
+    #      "files.exclude" = {
+    #        "**/.classpath" = true;
+    #        "**/.project" = true;
+    #        "**/.settings" = true;
+    #      };
+    #      "remote.SSH.defaultExtensions" = [
+    #        "eamodio.gitlens"
+    #      ];
+    #    };
     extensions = with pkgs.vscode-extensions; [
       bbenoist.Nix
       ms-vscode-remote.remote-ssh
@@ -146,17 +145,17 @@ with pkgs.lib;
     };
   };
 
-/*
-  home.file."id_rsa" = {
-    source = ./. + "/../personal/ssh/${config.settings.profile}/id_rsa";
-    target = ".ssh/id_rsa";
-  };
+  /*
+    home.file."id_rsa" = {
+      source = ./. + "/../personal/ssh/${config.settings.profile}/id_rsa";
+      target = ".ssh/id_rsa";
+    };
 
-  home.file."id_rsa.pub" = {
-    source = ./. + "/../personal/ssh/${config.settings.profile}/id_rsa.pub";
-    target = ".ssh/id_rsa.pub";
-  };
-*/
+    home.file."id_rsa.pub" = {
+      source = ./. + "/../personal/ssh/${config.settings.profile}/id_rsa.pub";
+      target = ".ssh/id_rsa.pub";
+    };
+  */
 
   programs.git = {
     enable = true;
@@ -171,7 +170,7 @@ with pkgs.lib;
       gl = "log --oneline --graph";
       pullall = "!git pull --rebase && git submodule update --init --recursive";
     };
-    ignores = [".#*" "*.desktop" "*.lock"];
+    ignores = [ ".#*" "*.desktop" "*.lock" ];
     extraConfig = {
       branch.autosetuprebase = "never";
       push.default = "simple";
@@ -198,128 +197,128 @@ with pkgs.lib;
   };
 
 
-/*
-  xsession.enable = true;
+  /*
+    xsession.enable = true;
 
-  xsession.windowManager.i3 = {
-    enable = true;
-    config = {
-      modifier = mod;
-      bars = [
-        {
-          id = "bar-0";
-          position = "top";
-          fonts = ["${config.settings.fontName} ${toString config.settings.fontSize}"];
-        }
-      ];
-      keybindings = mkOptionDefault (
-        {
-          "${mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
-          "${mod}+q" = "reload";
-          "${mod}+Control+q" = "restart";
-          "${mod}+Shift+q" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
-          "${mod}+Shift+c" = "kill";
-          "${mod}+Return" = "exec ${config.settings.terminal}";
-          "${mod}+Shift+Return" = "exec ${config.settings.terminal} -e tmux";
-          "${mod}+Shift+e" = "exec emacsclient -c";
-          "${mod}+j" = "focus down";
-          "${mod}+k" = "focus up";
-          "${mod}+l" = "focus right";
-          "${mod}+h" = "focus left";
-          "${mod}+u" = "focus parent";
-          "${mod}+Shift+U" = "focus child";
-          "${mod}+Shift+J" = "move down";
-          "${mod}+Shift+K" = "move up";
-          "${mod}+Shift+L" = "move right";
-          "${mod}+Shift+H" = "move left";
-          "${mod}+c" = "layout tabbed";
-          "${mod}+x" = "split v";
-          "${mod}+z" = "split h";
-          "${mod}+space" = "layout toggle splitv splith tabbed";
-          "${mod}+y" = "bar mode toggle";
-          "${mod}+Shift+N" = "exec \"xterm -e 'sudo nixos-rebuild switch; read -s -k \\?COMPLETE'\"";
-          "${mod}+Shift+r" = "nop";
-          "${mod}+v" = "nop";
-          "${mod}+e" = "nop";
-          "${mod}+s" = "nop";
-        }
-        // optionalAttrs (!config.settings.vm)
-        {
-          "${mod}+equal" = "workspace next";
-          "${mod}+minus" = "workspace prev";
-          "${mod}+grave" = "workspace 1";
-          "${mod}+Shift+Control+L" = "exec i3lock";
-          "XF86AudioRaiseVolume" = "exec --no-startup-id amixer sset Master 5%+ unmute";
-          "XF86AudioLowerVolume" = "exec --no-startup-id amixer sset Master 5%- unmute";
-          "XF86AudioMute" = "exec --no-startup-id amixer sset Master toggle";
-        });
-      modes.resize = {
-        "h" = "resize shrink width 10 px or 10 ppt";
-        "j" = "resize grow height 10 px or 10 ppt";
-        "k" = "resize shrink height 10 px or 10 ppt";
-        "l" = "resize grow width 10 px or 10 ppt";
-        "Escape" = "mode default";
-        "Return" = "mode default";
+    xsession.windowManager.i3 = {
+      enable = true;
+      config = {
+        modifier = mod;
+        bars = [
+          {
+            id = "bar-0";
+            position = "top";
+            fonts = ["${config.settings.fontName} ${toString config.settings.fontSize}"];
+          }
+        ];
+        keybindings = mkOptionDefault (
+          {
+            "${mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
+            "${mod}+q" = "reload";
+            "${mod}+Control+q" = "restart";
+            "${mod}+Shift+q" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+            "${mod}+Shift+c" = "kill";
+            "${mod}+Return" = "exec ${config.settings.terminal}";
+            "${mod}+Shift+Return" = "exec ${config.settings.terminal} -e tmux";
+            "${mod}+Shift+e" = "exec emacsclient -c";
+            "${mod}+j" = "focus down";
+            "${mod}+k" = "focus up";
+            "${mod}+l" = "focus right";
+            "${mod}+h" = "focus left";
+            "${mod}+u" = "focus parent";
+            "${mod}+Shift+U" = "focus child";
+            "${mod}+Shift+J" = "move down";
+            "${mod}+Shift+K" = "move up";
+            "${mod}+Shift+L" = "move right";
+            "${mod}+Shift+H" = "move left";
+            "${mod}+c" = "layout tabbed";
+            "${mod}+x" = "split v";
+            "${mod}+z" = "split h";
+            "${mod}+space" = "layout toggle splitv splith tabbed";
+            "${mod}+y" = "bar mode toggle";
+            "${mod}+Shift+N" = "exec \"xterm -e 'sudo nixos-rebuild switch; read -s -k \\?COMPLETE'\"";
+            "${mod}+Shift+r" = "nop";
+            "${mod}+v" = "nop";
+            "${mod}+e" = "nop";
+            "${mod}+s" = "nop";
+          }
+          // optionalAttrs (!config.settings.vm)
+          {
+            "${mod}+equal" = "workspace next";
+            "${mod}+minus" = "workspace prev";
+            "${mod}+grave" = "workspace 1";
+            "${mod}+Shift+Control+L" = "exec i3lock";
+            "XF86AudioRaiseVolume" = "exec --no-startup-id amixer sset Master 5%+ unmute";
+            "XF86AudioLowerVolume" = "exec --no-startup-id amixer sset Master 5%- unmute";
+            "XF86AudioMute" = "exec --no-startup-id amixer sset Master toggle";
+          });
+        modes.resize = {
+          "h" = "resize shrink width 10 px or 10 ppt";
+          "j" = "resize grow height 10 px or 10 ppt";
+          "k" = "resize shrink height 10 px or 10 ppt";
+          "l" = "resize grow width 10 px or 10 ppt";
+          "Escape" = "mode default";
+          "Return" = "mode default";
+        };
+        window.titlebar = false;
       };
-      window.titlebar = false;
+      # inexplicably xserver wrapper doesn't set the background image
+      extraConfig = ''
+        focus_wrapping no
+        exec_always "if [[ -e $HOME/.background-image ]]; then feh --bg-scale $HOME/.background-image ; fi"
+      '';
     };
-    # inexplicably xserver wrapper doesn't set the background image
-    extraConfig = ''
-      focus_wrapping no
-      exec_always "if [[ -e $HOME/.background-image ]]; then feh --bg-scale $HOME/.background-image ; fi"
-    '';
-  };
 
-  xsession.initExtra =
-    if (config.settings.xkbFile != "none" ) then
-      let
-        xkbFile = ../xkb + "/${config.settings.xkbFile}.xkb";
-        compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
-          ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${xkbFile} $out
-       '';
-      in
-        "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY"
-    else
-      "";
+    xsession.initExtra =
+      if (config.settings.xkbFile != "none" ) then
+        let
+          xkbFile = ../xkb + "/${config.settings.xkbFile}.xkb";
+          compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
+            ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${xkbFile} $out
+         '';
+        in
+          "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY"
+      else
+        "";
 
-  services.screen-locker = {
-    enable = !config.settings.vm;
-    lockCmd = "i3lock";
-  };
+    services.screen-locker = {
+      enable = !config.settings.vm;
+      lockCmd = "i3lock";
+    };
 
-  home.file.".Xresources" = {
-    target = ".Xresources";
-    text = ''
-      xterm*faceName: ${config.settings.fontName}
-      xterm*faceSize: ${toString config.settings.fontSize}
-    '';
-  };
+    home.file.".Xresources" = {
+      target = ".Xresources";
+      text = ''
+        xterm*faceName: ${config.settings.fontName}
+        xterm*faceSize: ${toString config.settings.fontSize}
+      '';
+    };
+    */
+
+
+  /*
+  programs = {
+    zsh = {    
+      interactiveShellInit = ''
+  #      export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
+  #      
+  #      # Customize oh-my-zsh options here
+  #      ZSH_THEME="agnoster"
+
+  #      HISTFILESIZE=500000
+  #      HISTSIZE=500000
+  #      export HISTFILE=~/.zsh_history      
+  #      bindkey -s "\C-r" "\eqhstr\n"
+  #
+  #      source $ZSH/oh-my-zsh.sh
+      '';    
+      };
+    };
   */
-
-
-/*
-programs = {
-	zsh = {		
-		interactiveShellInit = ''
-#			export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
-#			
-#			# Customize oh-my-zsh options here
-#			ZSH_THEME="agnoster"
-
-#			HISTFILESIZE=500000
-#			HISTSIZE=500000
-#			export HISTFILE=~/.zsh_history			
-#			bindkey -s "\C-r" "\eqhstr\n"
-#
-#			source $ZSH/oh-my-zsh.sh
-		'';		
-	  };
-  };
-*/
 
   programs.zsh = rec {
     enable = true;
-#    enableAutosuggestions = false;
+    #    enableAutosuggestions = false;
     # enabled by oh-my-zsh, this only ensure that compinit is not called twice
     enableCompletion = false;
     dotDir = ".config/zsh";
@@ -329,22 +328,22 @@ programs = {
       path = ".config/zsh/.zsh_history";
     };
 
-#    envExtra = ''
-#    ZSH=$ZDOTDIR/oh-my-zsh
-#    '';
+    #    envExtra = ''
+    #    ZSH=$ZDOTDIR/oh-my-zsh
+    #    '';
 
     initExtraBeforeCompInit = ''
-    source $ZDOTDIR/.shared.zshrc
+      source $ZDOTDIR/.shared.zshrc
     '';
 
-#    plugins = [
-#    ];
+    #    plugins = [
+    #    ];
 
-#    oh-my-zsh = {
-#      enable = true;
-#      plugins = ["autojump" "colored-man-pages" "git" "gitignore" "sudo" "docker" "kubectl"];
-#      theme = "agnoster";
-#    };
+    #    oh-my-zsh = {
+    #      enable = true;
+    #      plugins = ["autojump" "colored-man-pages" "git" "gitignore" "sudo" "docker" "kubectl"];
+    #      theme = "agnoster";
+    #    };
 
     shellAliases = {
       "ll" = "ls -al";
@@ -353,17 +352,17 @@ programs = {
     };
 
     initExtra = ''
-    # hstr
-    setopt hist_expire_dups_first
-    setopt hist_ignore_all_dups
-    setopt hist_ignore_space
-    setopt hist_no_store
-    setopt hist_reduce_blanks
-    setopt share_history
-    setopt magicequalsubst
-    bindkey -s "\C-r" "\C-a hstr -- \C-j"
-    export HSTR_CONFIG=hicolor
-    export HISTFILE=$HISTFILE
+      # hstr
+      setopt hist_expire_dups_first
+      setopt hist_ignore_all_dups
+      setopt hist_ignore_space
+      setopt hist_no_store
+      setopt hist_reduce_blanks
+      setopt share_history
+      setopt magicequalsubst
+      bindkey -s "\C-r" "\C-a hstr -- \C-j"
+      export HSTR_CONFIG=hicolor
+      export HISTFILE=$HISTFILE
     '';
 
     /*
@@ -386,9 +385,9 @@ programs = {
     */
 
     sessionVariables = {
-#      EDITOR = "vim";
-#      HSTR_CONFIG="hicolor";
-      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10";
+      #      EDITOR = "vim";
+      #      HSTR_CONFIG="hicolor";
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=10";
     };
   };
 
@@ -410,31 +409,38 @@ programs = {
       cd() { if [[ -n "$1" ]]; then builtin cd "$1" && ls; else builtin cd && ls; fi }
     '';
     sessionVariables = {
-#      CDPATH = ".:~/src/" +
-#        optionalString (config.settings.profile != "malloc47")
-#        ":~/src/${config.settings.profile}";
+      #      CDPATH = ".:~/src/" +
+      #        optionalString (config.settings.profile != "malloc47")
+      #        ":~/src/${config.settings.profile}";
       EDITOR = "vim";
     };
     shellOptions = [
-    "autocd" "cdspell" "dirspell" "globstar" # bash >= 4
-    "cmdhist" "nocaseglob" "histappend" "extglob"];
+      "autocd"
+      "cdspell"
+      "dirspell"
+      "globstar" # bash >= 4
+      "cmdhist"
+      "nocaseglob"
+      "histappend"
+      "extglob"
+    ];
   };
 
-/*
-  systemd.user.services.autocutsel = {
-    Unit.Description = "AutoCutSel";
-    Install = {
-      WantedBy = [ "default.target" ];
+  /*
+    systemd.user.services.autocutsel = {
+      Unit.Description = "AutoCutSel";
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
+      Service = {
+        Type = "forking";
+        Restart = "always";
+        RestartSec = 2;
+        ExecStartPre = "${pkgs.autocutsel}/bin/autocutsel -fork";
+        ExecStart = "${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork";
+      };
     };
-    Service = {
-      Type = "forking";
-      Restart = "always";
-      RestartSec = 2;
-      ExecStartPre = "${pkgs.autocutsel}/bin/autocutsel -fork";
-      ExecStart = "${pkgs.autocutsel}/bin/autocutsel -selection PRIMARY -fork";
-    };
-  };
-  */
+    */
 
   # home.file.".inputrc".source = ./.inputrc;
 
@@ -442,54 +448,54 @@ programs = {
   # xdg.configFile."i3status/config".source = ./.i3status.conf;
   # xdg.configFile.".user-dirs.dirs".source = ./.user-dirs.dirs;
 
-/*
-  home.file."wifi" = mkIf (!config.settings.vm) {
-    target = "bin/wifi";
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-      ${config.settings.terminal} -e nmtui
-    '';    
-  };
-*/  
+  /*
+    home.file."wifi" = mkIf (!config.settings.vm) {
+      target = "bin/wifi";
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+        ${config.settings.terminal} -e nmtui
+      '';    
+    };
+  */
 
   home.file = {
     ".config/zsh/.shared.zshrc" = {
       text = ''
-      ANTIBODY_HOME="$(antibody home)"
-      ZSH_THEME="agnoster"
+        ANTIBODY_HOME="$(antibody home)"
+        ZSH_THEME="agnoster"
 
-      plugins=(
-        autojump
-        colored-man-pages
-        docker
-        git
-        gitignore
-        kubectl
-        sudo
-      )
+        plugins=(
+          autojump
+          colored-man-pages
+          docker
+          git
+          gitignore
+          kubectl
+          sudo
+        )
 
-      export ZSH="$ANTIBODY_HOME/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+        export ZSH="$ANTIBODY_HOME/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 
-      # quit bugging me!
-      DISABLE_AUTO_UPDATE="true"
+        # quit bugging me!
+        DISABLE_AUTO_UPDATE="true"
 
-      # omz!
-      source <(antibody init)
-      antibody bundle "
-        robbyrussell/oh-my-zsh
-        zsh-users/zsh-completions
-        spwhitt/nix-zsh-completions
-        zdharma/fast-syntax-highlighting
-      "
+        # omz!
+        source <(antibody init)
+        antibody bundle "
+          robbyrussell/oh-my-zsh
+          zsh-users/zsh-completions
+          spwhitt/nix-zsh-completions
+          zdharma/fast-syntax-highlighting
+        "
 
-      # TODO Tilda incompatability?
-      # marzocchi/zsh-notify 
+        # TODO Tilda incompatability?
+        # marzocchi/zsh-notify 
 
-      setopt auto_cd
-      unsetopt correct_all
-      setopt no_flow_control
-    '';
+        setopt auto_cd
+        unsetopt correct_all
+        setopt no_flow_control
+      '';
     };
   };
 }

@@ -7,7 +7,7 @@
   ];
 
   nixpkgs.config = import ../config/nixpkgs.nix;
-  nixpkgs.overlays = [(import ../pkgs/default.nix)];
+  nixpkgs.overlays = [ (import ../pkgs/default.nix) ];
 
   # Using https://nixos.wiki/wiki/Overlays to let the local nix tools
   # get the same overlays as we define in this file
@@ -28,13 +28,13 @@
   nix.nixPath =
     options.nix.nixPath.default ++
     [ "nixpkgs-overlays=/etc/nixos/overlays-compat/" ];
-  
+
   # Set time zone.
   time.timeZone = "Europe/Prague";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [    
+  environment.systemPackages = with pkgs; [
     bind
     curl
     docker_compose
@@ -53,15 +53,15 @@
     tpm2-tools
     nixpkgs-fmt
   ];
-  
+
   nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
   '';
 
   environment.variables = {
-#		EDITOR = "urxvt";
-	};
+    #    EDITOR = "urxvt";
+  };
 
   fonts.fonts = with pkgs; [
     corefonts
@@ -77,7 +77,7 @@
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;  
+  services.openssh.enable = true;
   services.pcscd.enable = false;
 
   virtualisation.docker.enable = true;
@@ -98,7 +98,7 @@
     createHome = true;
     home = "/home/${config.settings.username}";
     description = "${config.settings.name}";
-    extraGroups = ["audio" "docker" "networkmanager" "wheel" "dialout"];
+    extraGroups = [ "audio" "docker" "networkmanager" "wheel" "dialout" ];
     hashedPassword = "$6$EQGBQvubTZ$um26okodYC7rw8SwnJToA.2UxawxO7ZDuf3KsCvTXbDIscDcmTxfx/YzQNYc0EEntbXGSjFA79nuzO5kaNeIz0";
     uid = 1000;
     #openssh.authorizedKeys.keys = "ssh-dss AA xxx" ];
@@ -107,10 +107,10 @@
     #];
     shell = pkgs.zsh;
   };
-  
-  home-manager.users.${config.settings.username} = import ../config/home.nix ;
-#  home-manager.users.${config.settings.username}.settings = config.settings;
-  
+
+  home-manager.users.${config.settings.username} = import ../config/home.nix;
+  #  home-manager.users.${config.settings.username}.settings = config.settings;
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you

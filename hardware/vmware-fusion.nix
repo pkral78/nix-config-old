@@ -9,21 +9,22 @@
   boot.initrd.availableKernelModules = [ "ata_piix" "mptspi" "uhci_hcd" "ehci_pci" "sd_mod" "sr_mod" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams = ["nomodeset"];
+  boot.kernelParams = [ "nomodeset" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/09442904-1c08-47dd-b3ad-7d1cd6e64e9b";
+    {
+      device = "/dev/disk/by-uuid/09442904-1c08-47dd-b3ad-7d1cd6e64e9b";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/57AD-7975";
+    {
+      device = "/dev/disk/by-uuid/57AD-7975";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/c67226c5-3fe5-4e70-98c6-651c76653c3e"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/c67226c5-3fe5-4e70-98c6-651c76653c3e"; }];
 
   nix.maxJobs = lib.mkDefault 8;
 }

@@ -17,7 +17,7 @@ rec
   boot.initrd.kernelModules = [ "fbcon" ];
 
   networking.hostName = "shodan";
-  networking.networkmanager.enable = true;    
+  networking.networkmanager.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -31,74 +31,74 @@ rec
   networking.extraHosts = ''
     1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
   '';
-  
+
   networking.firewall = {
     allowedTCPPorts = [ 17500 ];
     allowedUDPPorts = [ 17500 ];
   };
 
-  services.xserver = {    
+  services.xserver = {
     enable = true;
     autorun = false;
     startDbusSession = true;
     layout = "us";
-    xkbOptions = "eurosign:e";  
-#    autoRepeatDelay = 250;
+    xkbOptions = "eurosign:e";
+    #    autoRepeatDelay = 250;
   };
 
-  services.xserver.desktopManager = {  
+  services.xserver.desktopManager = {
     xterm.enable = false;
-	gnome3.enable = true;
+    gnome3.enable = true;
   };
 
   services.xserver.displayManager = {
-	sessionCommands = ''
-	${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER
-	'';
-	gdm = {
-		enable = true;
-		wayland = false;
-		autoSuspend = false;
- 	};
+    sessionCommands = ''
+      ${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER
+    '';
+    gdm = {
+      enable = true;
+      wayland = false;
+      autoSuspend = false;
+    };
   };
-  
+
   /*
   services.xserver.desktopManager = {
     default = "none";
     xterm.enable = false;
-#	default = "xfce";	
-#	xfce = {
-#		enable= true;
-#		noDesktop = true;
-#		enableXfwm = false;
-#	};    
+#  default = "xfce";  
+#  xfce = {
+#    enable= true;
+#    noDesktop = true;
+#    enableXfwm = false;
+#  };    
   };
 
   services.xserver.displayManager.lightdm = {
-	enable = true;
-	greeter.enable = false;
-	autoLogin.enable = true;
-	autoLogin.user = "${config.settings.username}";
+  enable = true;
+  greeter.enable = false;
+  autoLogin.enable = true;
+  autoLogin.user = "${config.settings.username}";
   };
 
   services.xserver.windowManager = {
     default = "i3";
-	i3 = {
-		enable = true;
-		package = pkgs.i3-gaps;
-		extraPackages = with pkgs; [
-			dmenu
-			i3status
-			i3lock
-	#		i3blocks
-		];
-	};
+  i3 = {
+    enable = true;
+    package = pkgs.i3-gaps;
+    extraPackages = with pkgs; [
+      dmenu
+      i3status
+      i3lock
+  #    i3blocks
+    ];
+  };
   };
   */
 
   # Android ADB setup
   programs.adb.enable = true;
-  users.users.${config.settings.username}.extraGroups = ["adbusers"];
+  users.users.${config.settings.username}.extraGroups = [ "adbusers" ];
   services.udev.packages = [ pkgs.android-udev-rules pkgs.jlink ];
 
   programs.light.enable = true;
@@ -115,10 +115,10 @@ rec
   sound.mediaKeys.enable = true;
 
   services.logind.extraConfig =
-  ''HandlePowerKey=suspend
+    ''HandlePowerKey=suspend
   '';
 
-#  warnings = ["${services.logind.extraConfig}"];
+  #  warnings = ["${services.logind.extraConfig}"];
 
   powerManagement = { enable = true; cpuFreqGovernor = "ondemand"; };
 }
