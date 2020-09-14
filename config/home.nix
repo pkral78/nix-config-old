@@ -53,6 +53,7 @@ with pkgs.lib;
     p7zip
 #    nix-zsh-completions
     antibody
+    jlink
     nitrokey-app
     # Zephyr
     xz

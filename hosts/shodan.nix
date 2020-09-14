@@ -95,7 +95,7 @@ rec
   # Android ADB setup
   programs.adb.enable = true;
   users.users.${config.settings.username}.extraGroups = ["adbusers"];
-  services.udev.packages = [ pkgs.android-udev-rules ];
+  services.udev.packages = [ pkgs.android-udev-rules pkgs.jlink ];
 
   programs.light.enable = true;
   services.actkbd = {
