@@ -27,6 +27,8 @@ rec
   environment.systemPackages = with pkgs; [
     dropbox-cli
     fwupd
+    gnome3.gnome-tweaks
+    gnome3.gnome-shell-extensions
   ];
 
   services.fwupd.enable = true;
