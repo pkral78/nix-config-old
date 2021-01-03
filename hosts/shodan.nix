@@ -26,7 +26,10 @@ rec
 
   environment.systemPackages = with pkgs; [
     dropbox-cli
+    fwupd
   ];
+
+  services.fwupd.enable = true;
 
   networking.extraHosts = ''
     1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
