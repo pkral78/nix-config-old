@@ -52,6 +52,7 @@
     rsync
     tpm2-tools
     nixpkgs-fmt
+    cntr
   ];
 
   nix.extraOptions = ''
