@@ -323,9 +323,12 @@ with pkgs.lib;
     enableCompletion = false;
     dotDir = ".config/zsh";
     history = {
-      expireDuplicatesFirst = true;
-      size = 99999;
+      size = 10000000;
+      save = 10000000;
       path = ".config/zsh/.zsh_history";
+      expireDuplicatesFirst = true;
+      share = true;
+      extended = true;
     };
 
     #    envExtra = ''
