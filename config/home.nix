@@ -10,16 +10,14 @@ with pkgs.lib;
 
   nixpkgs.config = import ./nixpkgs.nix;
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs.nix;
-  nixpkgs.overlays = [ (import ../pkgs/default.nix) ];
 
   home.packages = with pkgs; [
-    #    autocutsel
+    antibody
     autojump
     bc
     file
     coreutils
     ffmpeg
-    #    gitAndTools.pre-commit
     home-manager
     hstr
     ispell
@@ -33,22 +31,14 @@ with pkgs.lib;
     unzip
     zip
     p7zip
+    binutils-unwrapped
     #    nix-zsh-completions
-    antibody
-    jlink
-    # Zephyr
     xz
     tk
-    fzf
+    fzf    
+    patchelf
   ];
-
-  services.gpg-agent = {
-    enable = true;
-    enableScDaemon = true;
-    enableSshSupport = true;
-    defaultCacheTtl = 1800;
-    pinentryFlavor = "gnome3";
-  };
+ 
   /*
   programs.emacs.enable = true;
   services.emacs.enable = true;

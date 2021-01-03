@@ -24,11 +24,20 @@ rec
   # networking.firewall.enable = false;
 
   environment.systemPackages = with pkgs; [
+    podman-compose
     dropbox-cli
     fwupd
     gnome3.gnome-tweaks
     gnome3.gnome-shell-extensions
   ];
+
+  virtualisation = {
+#      containers.users = [ "pkral" ];
+      podman = {
+       enable = true;
+       dockerCompat = true;
+      };
+  };
 
   services.fwupd.enable = true;
 
@@ -144,6 +153,7 @@ rec
   home-manager.users.${config.settings.username} = {
     
     home.packages = with pkgs; [
+      jlink
       nerdfonts
       feh
       firefox
@@ -158,6 +168,7 @@ rec
       thunderbird
       libreoffice-fresh
     ];
+
 
     # TODO vscode
     # .config/Code/User/settings.json:
@@ -202,6 +213,14 @@ rec
     };
     
     accounts.email = import ../private/accounts.nix;
+
+    services.gpg-agent = {
+      enable = true;
+      enableScDaemon = true;
+      enableSshSupport = true;
+      defaultCacheTtl = 1800;
+      pinentryFlavor = "gnome3";
+    };  
   };
 
   fonts.fonts = with pkgs; [
@@ -214,5 +233,5 @@ rec
       fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
     })
   ];
-  
+
 }

@@ -37,7 +37,7 @@
   environment.systemPackages = with pkgs; [
     bind
     curl
-    docker_compose
+#    docker_compose
     git
     gnupg
     mc
@@ -75,9 +75,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.pcscd.enable = false;
-
-  virtualisation.docker.enable = true;
-  virtualisation.docker.enableOnBoot = false;
 
   # Required because /run/user/1000 tempfs is too small for docker
   services.logind.extraConfig = ''
