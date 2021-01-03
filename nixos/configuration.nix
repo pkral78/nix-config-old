@@ -60,6 +60,9 @@
     keep-derivations = true
   '';
 
+  nix.useSandbox = "relaxed";
+  nix.trustedUsers = ["pkral"];
+
   environment.variables = {
     #    EDITOR = "urxvt";
   };
