@@ -33,12 +33,15 @@ rec
   services.fwupd.enable = true;
 
   networking.extraHosts = ''
-    1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
+    #1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
   '';
 
   networking.firewall = {
     allowedTCPPorts = [ 17500 ];
-    allowedUDPPorts = [ 17500 ];
+    # 5678 - Cisco Discovery Protocol
+    # 20561 - MAC Telnet
+    allowedUDPPorts = [ 17500 5678 ];
+    trustedInterfaces = [ "enp0s31f6" "wlp82s0" ];
   };
 
   services.xserver = {
