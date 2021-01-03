@@ -56,6 +56,7 @@ with pkgs.lib;
     tk
     slack
     sublime-merge-dev
+    fzf
   ];
 
   services.gpg-agent = {
@@ -487,7 +488,12 @@ with pkgs.lib;
           zsh-users/zsh-completions
           spwhitt/nix-zsh-completions
           zdharma/fast-syntax-highlighting
+          b4b4r07/enhancd
         "
+
+        # enhancd is not antibody "native", must be sourced explicitly
+        export ENHANCD_FILTER=fzf
+        source `antibody path b4b4r07/enhancd`/init.sh
 
         # TODO Tilda incompatability?
         # marzocchi/zsh-notify 
