@@ -47,7 +47,6 @@ rec
   services.xserver = {
     enable = true;
     autorun = false;
-    startDbusSession = true;
     layout = "us";
     xkbOptions = "eurosign:e";
     #    autoRepeatDelay = 250;
