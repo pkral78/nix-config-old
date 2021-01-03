@@ -112,8 +112,6 @@ with pkgs.lib;
     extensions = with pkgs.vscode-extensions; [
       bbenoist.Nix
       ms-vscode-remote.remote-ssh
-      ms-python.python
-      ms-vscode.cpptools
       ms-azuretools.vscode-docker
     ];
   };
