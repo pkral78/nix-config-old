@@ -10,6 +10,7 @@
   boot.initrd.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "msr.allow_writes=on" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/eb0816a2-9c8a-4947-b591-913b28d8a591";
