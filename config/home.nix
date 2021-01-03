@@ -40,10 +40,7 @@ with pkgs.lib;
     nerdfonts
     openjdk8
     pv
-    python38
-    python38.pkgs.pip
-    python38.pkgs.setuptools
-    python38.pkgs.wheel
+    python39
     stdenv
     tilda
     tmuxinator
