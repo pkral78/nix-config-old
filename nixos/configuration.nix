@@ -67,17 +67,6 @@
     #    EDITOR = "urxvt";
   };
 
-  fonts.fonts = with pkgs; [
-    corefonts
-    geosanslight
-    inconsolata
-    libertine
-    libre-baskerville
-    (nerdfonts.override {
-      fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
-    })
-  ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

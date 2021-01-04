@@ -139,4 +139,80 @@ rec
       fsType = "cifs";
       options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,guest,uid=nobody,gid=nogroup,iocharset=utf8,noperm"];
   };
+
+  # shodan specific packages
+  home-manager.users.${config.settings.username} = {
+    
+    home.packages = with pkgs; [
+      nerdfonts
+      feh
+      firefox
+      google-chrome
+      brave
+      alacritty
+      nitrokey-app
+      slack    
+      sublime-merge-dev
+      remmina
+      tilda
+      thunderbird
+      libreoffice-fresh
+    ];
+
+    # TODO vscode
+    # .config/Code/User/settings.json:
+    # {
+    # "remote.extensionKind": { "ms-azuretools.vscode-docker": "workspace" }
+    #
+    programs.vscode = {
+      enable = true;
+      # see https://discourse.nixos.org/t/vscode-with-extensions-and-settings-using-home-manager/5747/2
+      #    userSettings = {
+      #      "window.zoomLevel" = 1;
+      #      "git.autofetch" = false;
+      #      "diffEditor.ignoreTrimWhitespace" = true;
+      #      "gitlens.advanced.messages" = {
+      #        "suppressFileNotUnderSourceControlWarning" = true;
+      #      };
+      #      "files.exclude" = {
+      #        "**/.classpath" = true;
+      #        "**/.project" = true;
+      #        "**/.settings" = true;
+      #      };
+      #      "remote.SSH.defaultExtensions" = [
+      #        "eamodio.gitlens"
+      #      ];
+      #    };
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.Nix
+        ms-vscode-remote.remote-ssh
+        ms-azuretools.vscode-docker
+      ];
+    };
+
+    programs = {
+      mbsync.enable = true;
+      msmtp.enable = true;
+      notmuch = {
+        enable = true;
+        hooks = {
+          preNew = "mbsync --all";
+        };
+      };
+    };
+    
+    accounts.email = import ../private/accounts.nix;
+  };
+
+  fonts.fonts = with pkgs; [
+    corefonts
+    geosanslight
+    inconsolata
+    libertine
+    libre-baskerville
+    (nerdfonts.override {
+      fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
+    })
+  ];
+  
 }

@@ -13,36 +13,22 @@ with pkgs.lib;
   nixpkgs.overlays = [ (import ../pkgs/default.nix) ];
 
   home.packages = with pkgs; [
-    alacritty
     #    autocutsel
     autojump
     bc
     file
-    #    android-studio
-    #    jetbrains.clion
-    #    datagrip
-    #    golang
-    #    idea-ultimate
-    #    jetbrains.pycharm-professional
-    #    webstorm
     coreutils
-    feh
     ffmpeg
-    firefox
     #    gitAndTools.pre-commit
-    google-chrome
-    brave
     home-manager
     hstr
     ispell
     jq
     killall
-    nerdfonts
     openjdk8
     pv
     python39
     stdenv
-    tilda
     tmuxinator
     unzip
     zip
@@ -50,12 +36,9 @@ with pkgs.lib;
     #    nix-zsh-completions
     antibody
     jlink
-    nitrokey-app
     # Zephyr
     xz
     tk
-    slack
-    sublime-merge-dev
     fzf
   ];
 
@@ -84,37 +67,6 @@ with pkgs.lib;
     '';
   };
   */
-
-  # TODO vscode
-  # .config/Code/User/settings.json:
-  # {
-  # "remote.extensionKind": { "ms-azuretools.vscode-docker": "workspace" }
-  #
-  programs.vscode = {
-    enable = true;
-    # see https://discourse.nixos.org/t/vscode-with-extensions-and-settings-using-home-manager/5747/2
-    #    userSettings = {
-    #      "window.zoomLevel" = 1;
-    #      "git.autofetch" = false;
-    #      "diffEditor.ignoreTrimWhitespace" = true;
-    #      "gitlens.advanced.messages" = {
-    #        "suppressFileNotUnderSourceControlWarning" = true;
-    #      };
-    #      "files.exclude" = {
-    #        "**/.classpath" = true;
-    #        "**/.project" = true;
-    #        "**/.settings" = true;
-    #      };
-    #      "remote.SSH.defaultExtensions" = [
-    #        "eamodio.gitlens"
-    #      ];
-    #    };
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.Nix
-      ms-vscode-remote.remote-ssh
-      ms-azuretools.vscode-docker
-    ];
-  };
 
   programs.tmux = {
     enable = true;
