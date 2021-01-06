@@ -137,10 +137,16 @@ rec
 
   powerManagement = { enable = true; cpuFreqGovernor = "ondemand"; };
 
-  fileSystems."/mnt/share" = {
+  fileSystems."/mnt/nas" = {
       device = "//nas/share";
       fsType = "cifs";
-      options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${toString ../private/smb-secrets},uid=nobody,gid=nogroup,iocharset=utf8,noperm"];
+      options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${toString ../private/smb_creds_nas},uid=nobody,gid=nogroup,iocharset=utf8,noperm"];
+  };
+
+  fileSystems."/mnt/share" = {
+      device = "//photon2/public";
+      fsType = "cifs";
+      options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${toString ../private/smb_creds_share},uid=nobody,gid=nogroup,iocharset=utf8,noperm"];
   };
 
   fileSystems."/mnt/omsquare" = {
