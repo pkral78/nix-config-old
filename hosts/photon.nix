@@ -56,7 +56,7 @@ rec
     enable = true;
    
     securityType = "user";
-    
+
     extraConfig = ''
       workgroup = WORKGROUP
       server string = %h server (Samba)      

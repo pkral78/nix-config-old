@@ -129,8 +129,8 @@ rec
   sound.enable = true;
   sound.mediaKeys.enable = true;
 
-  services.logind.extraConfig =
-    ''HandlePowerKey=suspend
+  services.logind.extraConfig = ''
+    HandlePowerKey=suspend
   '';
 
   #  warnings = ["${services.logind.extraConfig}"];
