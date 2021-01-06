@@ -52,6 +52,10 @@ rec
     ];    
   };
 
+  users.users.share = {
+    isNormalUser = false;
+  };
+
   services.samba = {
     enable = true;
    
