@@ -16,7 +16,7 @@ rec
 #  boot.loader.efi.canTouchEfiVariables = true;
 #  boot.initrd.kernelModules = [ "fbcon" ];
 
-  networking.hostName = "photon2";
+  networking.hostName = "photon";
   networking.networkmanager.enable = true;    
 
   virtualisation.vmware.guest = {
