@@ -49,13 +49,20 @@ rec
   home-manager.users.${config.settings.username} = {
     home.packages = with pkgs; [
       nodejs-12_x
-    ];    
+      victoriametrics
+    ];
   };
 
   users.users.share = {
     isNormalUser = false;
   };
 
+  services.victoriametrics = {
+    enable = true;
+    retentionPeriod = 120;
+    #extraOptions = '';
+  };
+  
   services.samba = {
     enable = true;
    
