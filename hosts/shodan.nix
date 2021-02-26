@@ -133,6 +133,8 @@ rec
     HandlePowerKey=suspend
   '';
 
+  services.trezord.enable = true;
+  
   #  warnings = ["${services.logind.extraConfig}"];
 
   powerManagement = { enable = true; cpuFreqGovernor = "ondemand"; };
