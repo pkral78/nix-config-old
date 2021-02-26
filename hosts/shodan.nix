@@ -173,6 +173,7 @@ rec
       tilda
       thunderbird
       libreoffice-fresh
+      vlc
     ];
 
 

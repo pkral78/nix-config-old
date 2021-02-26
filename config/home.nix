@@ -37,6 +37,7 @@ with pkgs.lib;
     tk
     fzf    
     patchelf
+    openssl
   ];
  
   /*

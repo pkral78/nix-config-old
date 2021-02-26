@@ -53,6 +53,8 @@
     tpm2-tools
     nixpkgs-fmt
     cntr
+    psmisc
+    unrar
   ];
 
   nix.extraOptions = ''
