@@ -7,7 +7,10 @@
   ];
 
   nixpkgs.config = import ../config/nixpkgs.nix;
-  nixpkgs.overlays = [ (import ../pkgs/default.nix) ];
+  nixpkgs.overlays = [ 
+    (import ../pkgs/default.nix)
+    (import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
+  ];
 
   # Using https://nixos.wiki/wiki/Overlays to let the local nix tools
   # get the same overlays as we define in this file
