@@ -55,6 +55,10 @@
     cntr
     psmisc
     unrar
+    lsof
+    traceroute
+    dos2unix
+    nmap
   ];
 
   nix.extraOptions = ''

@@ -176,6 +176,8 @@ rec
       thunderbird
       libreoffice-fresh
       vlc
+      wine
+      tdesktop
     ];
 
 

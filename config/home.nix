@@ -13,6 +13,7 @@ with pkgs.lib;
 
   home.packages = with pkgs; [
     antibody
+    atuin
     autojump
     bc
     file
@@ -35,9 +36,23 @@ with pkgs.lib;
     #    nix-zsh-completions
     xz
     tk
-    fzf    
+    fzf
     patchelf
     openssl
+    imagemagick
+    exiftool
+    pdftk
+    trezor-suite
+    sqlitebrowser
+    zim
+    duplicacy
+    openvpn
+    jetbrains.pycharm-community
+    android-studio
+    opensc
+    discord
+    gopass
+    envsubst
   ];
  
   /*
@@ -432,6 +447,7 @@ with pkgs.lib;
           spwhitt/nix-zsh-completions
           zdharma/fast-syntax-highlighting
           b4b4r07/enhancd
+          #ellie/atuin
         "
 
         # enhancd is not antibody "native", must be sourced explicitly
