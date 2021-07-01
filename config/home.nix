@@ -444,6 +444,18 @@ with pkgs.lib;
         setopt auto_cd
         unsetopt correct_all
         setopt no_flow_control
+        
+        __enhancd::filter::exists()
+	{
+	    local line
+	
+	    while read line
+	    do
+	        if [[ $line == /mnt/* || -d $line ]]; then
+	            echo "$line"
+	        fi
+	    done
+	}
       '';
     };
   };
