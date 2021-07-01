@@ -227,7 +227,7 @@ rec
 
     services.gpg-agent = {
       enable = true;
-      enableScDaemon = true;
+      enableScDaemon = false;
       enableSshSupport = true;
       defaultCacheTtl = 1800;
       pinentryFlavor = "gnome3";
