@@ -61,8 +61,12 @@ with pkgs.lib;
 
   programs.tmux = {
     enable = true;
+    clock24 = true;
     terminal = "tmux-256color";
-    shortcut = "u";
+    shortcut = "b";
+    extraConfig = ''
+    set -g mouse on
+    '';
   };
 
   programs.ssh = {
