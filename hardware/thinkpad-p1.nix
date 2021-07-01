@@ -5,6 +5,8 @@
     <nixos-hardware/lenovo/thinkpad/x1-extreme/gen2>
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
+  
+  services.tlp.enable = false;
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "kvm-intel" ];
@@ -69,8 +71,8 @@
   #hardware.facetimehd.enable = true;
   hardware = {
 
-    nitrokey.enable = true;
-    nitrokey.group = "wheel";
+    #nitrokey.enable = true;
+    #nitrokey.group = "wheel";
 
     bumblebee.enable = false;
 
