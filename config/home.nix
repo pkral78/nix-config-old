@@ -291,7 +291,9 @@ with pkgs.lib;
       "ll" = "ls -al";
       "ns" = "nix-shell --command zsh";
       "hh" = "hstr";
+      "tx" = "tmuxinator";
     };
+
 
     initExtra = ''
       # hstr
