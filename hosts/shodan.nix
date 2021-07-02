@@ -197,6 +197,63 @@
       tdesktop
     ];
 
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        background_opacity = 0.95;
+
+        window = {
+          padding.x = 0;
+          padding.y = 0;
+          #decorations = "none";
+        };
+
+        font = {
+          size = 11.0;
+          use_thin_strokes = true;
+
+          normal.family = "DejaVuSansMono Nerd Font Mono";
+          bold.family = "DejaVuSansMono Nerd Font Mono";
+          italic.family = "DejaVuSansMono Nerd Font Mono";
+        };
+
+        cursor.style = "Beam";
+
+        colors = {
+          # Blood-moon
+          # https://github.com/dguo/blood-moon/blob/master/applications/alacritty/blood-moon.yml
+          primary = {
+            background = "0x10100E";
+            foreground = "0xC6C6C4";
+          };
+
+          # Normal colors
+          normal = {
+            black = "0x10100E";
+            red = "0xC40233";
+            green = "0x009F6B";
+            yellow = "0xFFD700";
+            #      blue =    "0x0087BD";
+            blue = "0x123e7c";
+            magenta = "0x9A4EAE";
+            cyan = "0x20B2AA";
+            white = "0xC6C6C4";
+          };
+
+          # Bright colors
+          bright = {
+            black = "0x696969";
+            red = "0xFF2400";
+            green = "0x03C03C";
+            yellow = "0xFDFF00";
+            blue = "0x007FFF";
+            magenta = "0xFF1493";
+            cyan = "0x00CCCC";
+            white = "0xFFFAFA";
+          };
+        };
+      };
+    };
 
     # TODO vscode
     # .config/Code/User/settings.json:
