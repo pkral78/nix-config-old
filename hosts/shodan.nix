@@ -41,6 +41,9 @@
 
   networking.extraHosts = ''
     #1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
+    10.30.10.10 gitlab.wn-cz.local
+    10.30.0.63 jira.wn-cz.local
+    10.30.0.69 confluence.wn-cz.local
   '';
 
   networking.firewall = {
