@@ -48,6 +48,7 @@ in with pkgs.lib; {
     discord
     gopass
     envsubst
+    nixfmt
   ];
 
   /* programs.emacs.enable = true;
