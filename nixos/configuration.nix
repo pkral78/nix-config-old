@@ -3,13 +3,17 @@
 {
   imports = [
     ../modules/settings.nix
-    "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
+    "${
+      builtins.fetchTarball
+      "https://github.com/rycee/home-manager/archive/master.tar.gz"
+    }/nixos"
   ];
 
   nixpkgs.config = import ../config/nixpkgs.nix;
-  nixpkgs.overlays = [ 
+  nixpkgs.overlays = [
     (import ../pkgs/default.nix)
-    (import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
+    (import (builtins.fetchTarball
+      "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
   ];
 
   # Using https://nixos.wiki/wiki/Overlays to let the local nix tools
@@ -28,9 +32,8 @@
     target = "nixos/overlays-compat/overlays.nix";
   };
 
-  nix.nixPath =
-    options.nix.nixPath.default ++
-    [ "nixpkgs-overlays=/etc/nixos/overlays-compat/" ];
+  nix.nixPath = options.nix.nixPath.default
+    ++ [ "nixpkgs-overlays=/etc/nixos/overlays-compat/" ];
 
   # Set time zone.
   time.timeZone = "Europe/Prague";
@@ -40,7 +43,7 @@
   environment.systemPackages = with pkgs; [
     bind
     curl
-#    docker_compose
+    #    docker_compose
     git
     gnupg
     mc
@@ -70,7 +73,7 @@
   '';
 
   nix.useSandbox = "relaxed";
-  nix.trustedUsers = ["pkral"];
+  nix.trustedUsers = [ "pkral" ];
 
   environment.variables = {
     #    EDITOR = "urxvt";
@@ -101,7 +104,8 @@
     home = "/home/${config.settings.username}";
     description = "${config.settings.name}";
     extraGroups = [ "audio" "docker" "networkmanager" "wheel" "dialout" ];
-    hashedPassword = "$6$EQGBQvubTZ$um26okodYC7rw8SwnJToA.2UxawxO7ZDuf3KsCvTXbDIscDcmTxfx/YzQNYc0EEntbXGSjFA79nuzO5kaNeIz0";
+    hashedPassword =
+      "$6$EQGBQvubTZ$um26okodYC7rw8SwnJToA.2UxawxO7ZDuf3KsCvTXbDIscDcmTxfx/YzQNYc0EEntbXGSjFA79nuzO5kaNeIz0";
     uid = 1000;
     #openssh.authorizedKeys.keys = "ssh-dss AA xxx" ];
     #openssh.authorizedKeys.keys = [

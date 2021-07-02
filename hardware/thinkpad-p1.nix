@@ -5,10 +5,11 @@
     <nixos-hardware/lenovo/thinkpad/x1-extreme/gen2>
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
-  
+
   services.tlp.enable = false;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -24,9 +25,8 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/f975f912-8c27-4155-aed5-79a02b90556a"; }
-  ];
+  swapDevices =
+    [{ device = "/dev/disk/by-uuid/f975f912-8c27-4155-aed5-79a02b90556a"; }];
 
   boot.initrd.luks.devices = {
     cryptkey = {
@@ -114,35 +114,33 @@
     # Redundand ?
     dpi = 284;
 
-    /*
-    videoDrivers = [ "intel" "nvidia" ];
-#   deviceSection = ''
-#    Option "TearFree" "true"
-#    '';
+    /* videoDrivers = [ "intel" "nvidia" ];
+       #   deviceSection = ''
+       #    Option "TearFree" "true"
+       #    '';
     */
 
     # libinput performs better for me than synaptics:
     # libinput.enable = true;    
 
-    /*
-    synaptics = {
-        enable = true;
-        twoFingerScroll = true;
-        tapButtons = false;
-        accelFactor = "0.001";
-        buttonsMap = [ 1 3 2 ];
-        palmDetect = true;
-        minSpeed = "0.70";
-        maxSpeed = "1.20";
-        additionalOptions = ''
-        Option "VertScrollDelta" "-480"
-        Option "HorizScrollDelta" "-480"
-        Option "FingerLow" "40"
-        Option "FingerHigh" "70"
-        Option "Resolution" "100"
-        Option "SoftButtonAreas" "93% 0 93% 0 0 0 0 0"
-        '';
-    };
+    /* synaptics = {
+           enable = true;
+           twoFingerScroll = true;
+           tapButtons = false;
+           accelFactor = "0.001";
+           buttonsMap = [ 1 3 2 ];
+           palmDetect = true;
+           minSpeed = "0.70";
+           maxSpeed = "1.20";
+           additionalOptions = ''
+           Option "VertScrollDelta" "-480"
+           Option "HorizScrollDelta" "-480"
+           Option "FingerLow" "40"
+           Option "FingerHigh" "70"
+           Option "Resolution" "100"
+           Option "SoftButtonAreas" "93% 0 93% 0 0 0 0 0"
+           '';
+       };
     */
   };
 

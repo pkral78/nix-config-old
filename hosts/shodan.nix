@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-rec
-{
+{ config, pkgs, ... }: rec {
   imports = [
     ../nixos/configuration.nix
     ../hardware/thinkpad-p1.nix
@@ -32,11 +30,11 @@ rec
   ];
 
   virtualisation = {
-#      containers.users = [ "pkral" ];
-      podman = {
-       enable = true;
-       dockerCompat = true;
-      };
+    #      containers.users = [ "pkral" ];
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
   };
 
   services.fwupd.enable = true;
@@ -63,7 +61,7 @@ rec
 
   services.xserver.desktopManager = {
     xterm.enable = false;
-    gnome3.enable = true;
+    gnome.enable = true;
   };
 
   services.xserver.displayManager = {
@@ -77,38 +75,37 @@ rec
     };
   };
 
-  /*
-  services.xserver.desktopManager = {
-    default = "none";
-    xterm.enable = false;
-#  default = "xfce";  
-#  xfce = {
-#    enable= true;
-#    noDesktop = true;
-#    enableXfwm = false;
-#  };    
-  };
+  /* services.xserver.desktopManager = {
+         default = "none";
+         xterm.enable = false;
+     #  default = "xfce";
+     #  xfce = {
+     #    enable= true;
+     #    noDesktop = true;
+     #    enableXfwm = false;
+     #  };
+       };
 
-  services.xserver.displayManager.lightdm = {
-  enable = true;
-  greeter.enable = false;
-  autoLogin.enable = true;
-  autoLogin.user = "${config.settings.username}";
-  };
+       services.xserver.displayManager.lightdm = {
+       enable = true;
+       greeter.enable = false;
+       autoLogin.enable = true;
+       autoLogin.user = "${config.settings.username}";
+       };
 
-  services.xserver.windowManager = {
-    default = "i3";
-  i3 = {
-    enable = true;
-    package = pkgs.i3-gaps;
-    extraPackages = with pkgs; [
-      dmenu
-      i3status
-      i3lock
-  #    i3blocks
-    ];
-  };
-  };
+       services.xserver.windowManager = {
+         default = "i3";
+       i3 = {
+         enable = true;
+         package = pkgs.i3-gaps;
+         extraPackages = with pkgs; [
+           dmenu
+           i3status
+           i3lock
+       #    i3blocks
+         ];
+       };
+       };
   */
 
   # Android ADB setup
@@ -120,8 +117,16 @@ rec
   services.actkbd = {
     enable = true;
     bindings = [
-      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 5"; }
-      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 5"; }
+      {
+        keys = [ 225 ];
+        events = [ "key" ];
+        command = "/run/current-system/sw/bin/light -A 5";
+      }
+      {
+        keys = [ 224 ];
+        events = [ "key" ];
+        command = "/run/current-system/sw/bin/light -U 5";
+      }
     ];
   };
 
@@ -134,32 +139,45 @@ rec
   '';
 
   services.trezord.enable = true;
-  
+
   #  warnings = ["${services.logind.extraConfig}"];
 
-  powerManagement = { enable = true; cpuFreqGovernor = "ondemand"; };
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
+  };
 
   fileSystems."/mnt/nas" = {
-      device = "//nas/share";
-      fsType = "cifs";
-      options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${toString ../private/smb_creds_nas},uid=nobody,gid=nogroup,iocharset=utf8,noperm"];
+    device = "//nas/share";
+    fsType = "cifs";
+    options = [
+      "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${
+        toString ../private/smb_creds_nas
+      },uid=nobody,gid=nogroup,iocharset=utf8,noperm"
+    ];
   };
 
   fileSystems."/mnt/share" = {
-      device = "//photon/public";
-      fsType = "cifs";
-      options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${toString ../private/smb_creds_share},uid=nobody,gid=nogroup,iocharset=utf8,noperm"];
+    device = "//photon/public";
+    fsType = "cifs";
+    options = [
+      "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${
+        toString ../private/smb_creds_share
+      },uid=nobody,gid=nogroup,iocharset=utf8,noperm"
+    ];
   };
 
   fileSystems."/mnt/omsquare" = {
-      device = "//share.omsquare.com/public";
-      fsType = "cifs";
-      options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,guest,uid=nobody,gid=nogroup,iocharset=utf8,noperm"];
+    device = "//share.omsquare.com/public";
+    fsType = "cifs";
+    options = [
+      "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,guest,uid=nobody,gid=nogroup,iocharset=utf8,noperm"
+    ];
   };
 
   # shodan specific packages
   home-manager.users.${config.settings.username} = {
-    
+
     home.packages = with pkgs; [
       jlink
       nerdfonts
@@ -167,9 +185,8 @@ rec
       firefox
       google-chrome
       brave
-      alacritty
       nitrokey-app
-      slack    
+      slack
       sublime-merge-dev
       remmina
       tilda
@@ -217,12 +234,10 @@ rec
       msmtp.enable = true;
       notmuch = {
         enable = true;
-        hooks = {
-          preNew = "mbsync --all";
-        };
+        hooks = { preNew = "mbsync --all"; };
       };
     };
-    
+
     accounts.email = import ../private/accounts.nix;
 
     services.gpg-agent = {
@@ -231,7 +246,7 @@ rec
       enableSshSupport = true;
       defaultCacheTtl = 1800;
       pinentryFlavor = "gnome3";
-    };  
+    };
   };
 
   fonts.fonts = with pkgs; [

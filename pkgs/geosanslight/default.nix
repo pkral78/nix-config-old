@@ -1,9 +1,9 @@
-{stdenv, fetchzip}:
+{ stdenv, lib, fetchzip }:
 
 fetchzip {
   name = "geosanslight";
 
-  url =  https://dl.dafont.com/dl/?f=geo_sans_light;
+  url = "https://dl.dafont.com/dl/?f=geo_sans_light";
 
   postFetch = ''
     unzip $downloadedFile
@@ -15,7 +15,7 @@ fetchzip {
 
   meta = {
     description = "Geo Sans Light font";
-    homepage = https://www.dafont.com/geo-sans-light.font;
-    platforms = stdenv.lib.platforms.unix;
+    homepage = "https://www.dafont.com/geo-sans-light.font";
+    platforms = lib.platforms.unix;
   };
 }

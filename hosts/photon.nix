@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-rec
-{
+{ config, pkgs, ... }: rec {
   imports = [
     ../nixos/configuration.nix
     ../hardware/esxi-nuc.nix
@@ -12,12 +10,12 @@ rec
   };
 
   # Use the systemd-boot EFI boot loader.
-#  boot.loader.systemd-boot.enable = true;
-#  boot.loader.efi.canTouchEfiVariables = true;
-#  boot.initrd.kernelModules = [ "fbcon" ];
+  #  boot.loader.systemd-boot.enable = true;
+  #  boot.loader.efi.canTouchEfiVariables = true;
+  #  boot.initrd.kernelModules = [ "fbcon" ];
 
   networking.hostName = "photon";
-  networking.networkmanager.enable = true;    
+  networking.networkmanager.enable = true;
 
   virtualisation.vmware.guest = {
     enable = true;
@@ -30,10 +28,7 @@ rec
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  environment.systemPackages = with pkgs; [
-    docker-compose
-    cifs-utils
-  ];
+  environment.systemPackages = with pkgs; [ docker-compose cifs-utils ];
 
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
@@ -43,29 +38,27 @@ rec
     allowedUDPPorts = [ 137 138 ];
   };
 
-  powerManagement = { enable = true; cpuFreqGovernor = "ondemand"; };
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
+  };
 
   # photon specific packages
   home-manager.users.${config.settings.username} = {
-    home.packages = with pkgs; [
-      nodejs-12_x
-      victoriametrics
-    ];
+    home.packages = with pkgs; [ nodejs-12_x victoriametrics ];
   };
 
-  users.users.share = {
-    isNormalUser = false;
-  };
+  users.users.share = { isNormalUser = false; };
 
   services.victoriametrics = {
     enable = true;
     retentionPeriod = 120;
     #extraOptions = '';
   };
-  
+
   services.samba = {
     enable = true;
-   
+
     securityType = "user";
 
     extraConfig = ''
@@ -151,12 +144,12 @@ rec
 
 }
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+# networking.hostName = "nixos"; # Define your hostname.
+# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
+# The global useDHCP flag is deprecated, therefore explicitly set to false here.
+# Per-interface useDHCP will be mandatory in the future, so this generated config
+# replicates the default behaviour.
 #  networking.useDHCP = false;
 #  networking.interfaces.ens192.useDHCP = true;
 
