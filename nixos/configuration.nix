@@ -14,6 +14,8 @@
     (import ../pkgs/default.nix)
     (import (builtins.fetchTarball
       "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
+    (import (builtins.fetchTarball
+      "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz"))
   ];
 
   # Using https://nixos.wiki/wiki/Overlays to let the local nix tools

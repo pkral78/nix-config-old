@@ -27,14 +27,12 @@ in with pkgs.lib; {
     unzip
     zip
     p7zip
-    binutils-unwrapped
     #    nix-zsh-completions
     xz
     tk
     fzf
     patchelf
     openssl
-    imagemagick
     exiftool
     pdftk
     trezor-suite
