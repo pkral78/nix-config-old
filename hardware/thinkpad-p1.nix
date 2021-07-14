@@ -91,6 +91,7 @@
       #    ];
     };
     nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       prime = {
         sync.enable = true;
         intelBusId = "PCI:0:2:0";
