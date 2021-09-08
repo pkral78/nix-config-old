@@ -41,15 +41,18 @@ in with pkgs.lib; {
     duplicacy
     openvpn
     jetbrains.pycharm-community
+    jetbrains.idea-community
     android-studio
     opensc
     discord
     gopass
     envsubst
     nixfmt
-  ];
 
+    alacritty
 
+    neovim
+    stm32cubemx
 
 
   programs.tmux = {
