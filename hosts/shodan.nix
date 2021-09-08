@@ -27,8 +27,6 @@
     fwupd
     gnome3.gnome-tweaks
     gnome3.gnome-shell-extensions
-    emacsPgtkGcc
-    emacs-all-the-icons-fonts
     binutils-unwrapped
     (ripgrep.override { withPCRE2 = true; })
     gnutls
@@ -47,11 +45,6 @@
   };
 
   services.fwupd.enable = true;
-
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacsPgtkGcc;
-  };
 
   networking.extraHosts = ''
     #1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com

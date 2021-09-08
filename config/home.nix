@@ -49,23 +49,8 @@ in with pkgs.lib; {
     nixfmt
   ];
 
-  /* programs.emacs.enable = true;
-     services.emacs.enable = true;
 
-     home.file.".emacs.d" = {
-     source = ./.emacs.d;
-     recursive = true;
-     };
 
-     home.file."fonts.el" = {
-     target = ".emacs.d/config/fonts.el";
-     text = ''
-     (provide 'fonts)
-     (set-frame-font "${config.settings.fontName}-${toString config.settings.fontSize}")
-     (setq default-frame-alist '((font . "${config.settings.fontName}-${toString config.settings.fontSize}")))
-     '';
-     };
-  */
 
   programs.tmux = {
     enable = true;
@@ -163,7 +148,6 @@ in with pkgs.lib; {
      "${mod}+Shift+c" = "kill";
      "${mod}+Return" = "exec ${config.settings.terminal}";
      "${mod}+Shift+Return" = "exec ${config.settings.terminal} -e tmux";
-     "${mod}+Shift+e" = "exec emacsclient -c";
      "${mod}+j" = "focus down";
      "${mod}+k" = "focus up";
      "${mod}+l" = "focus right";
