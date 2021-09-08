@@ -114,35 +114,35 @@
     videoDrivers = [ "nvidia" ];
     # Redundand ?
     dpi = 284;
-
-    /* videoDrivers = [ "intel" "nvidia" ];
-       #   deviceSection = ''
-       #    Option "TearFree" "true"
-       #    '';
-    */
-
-    # libinput performs better for me than synaptics:
-    # libinput.enable = true;    
-
-    /* synaptics = {
-           enable = true;
-           twoFingerScroll = true;
-           tapButtons = false;
-           accelFactor = "0.001";
-           buttonsMap = [ 1 3 2 ];
-           palmDetect = true;
-           minSpeed = "0.70";
-           maxSpeed = "1.20";
-           additionalOptions = ''
-           Option "VertScrollDelta" "-480"
-           Option "HorizScrollDelta" "-480"
-           Option "FingerLow" "40"
-           Option "FingerHigh" "70"
-           Option "Resolution" "100"
-           Option "SoftButtonAreas" "93% 0 93% 0 0 0 0 0"
-           '';
-       };
-    */
   };
+
+  /* videoDrivers = [ "intel" "nvidia" ];
+     #   deviceSection = ''
+     #    Option "TearFree" "true"
+     #    '';
+  */
+
+  # libinput performs better for me than synaptics:
+  # libinput.enable = true;    
+
+  /* synaptics = {
+         enable = true;
+         twoFingerScroll = true;
+         tapButtons = false;
+         accelFactor = "0.001";
+         buttonsMap = [ 1 3 2 ];
+         palmDetect = true;
+         minSpeed = "0.70";
+         maxSpeed = "1.20";
+         additionalOptions = ''
+         Option "VertScrollDelta" "-480"
+         Option "HorizScrollDelta" "-480"
+         Option "FingerLow" "40"
+         Option "FingerHigh" "70"
+         Option "Resolution" "100"
+         Option "SoftButtonAreas" "93% 0 93% 0 0 0 0 0"
+         '';
+     };
+  */
 
 }
