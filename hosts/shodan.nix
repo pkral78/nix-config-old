@@ -289,11 +289,11 @@
       #        "eamodio.gitlens"
       #      ];
       #    };
-      extensions = with pkgs.vscode-extensions; [
-        bbenoist.Nix
-        ms-vscode-remote.remote-ssh
-        ms-azuretools.vscode-docker
-      ];
+      #      extensions = with pkgs.vscode-extensions; [
+      #        bbenoist.Nix
+      #        ms-vscode-remote.remote-ssh
+      #        ms-azuretools.vscode-docker
+      #      ];
     };
 
     programs = {

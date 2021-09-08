@@ -48,9 +48,7 @@ in with pkgs.lib; {
     gopass
     envsubst
     nixfmt
-
     alacritty
-
     neovim
     stm32cubemx
 
