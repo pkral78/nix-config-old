@@ -42,6 +42,7 @@ in with pkgs.lib; {
     openvpn
     jetbrains.pycharm-community
     jetbrains.idea-community
+    jetbrains.webstorm
     android-studio
     opensc
     discord
