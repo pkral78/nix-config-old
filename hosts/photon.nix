@@ -15,28 +15,21 @@
   #  boot.initrd.kernelModules = [ "fbcon" ];
 
   networking.hostName = "photon";
-  networking.networkmanager.enable = true;
+
+  networking.firewall = {
+    allowedTCPPorts = [ 445 139 ];
+    allowedUDPPorts = [ 137 138 ];
+  };
 
   virtualisation.vmware.guest = {
     enable = true;
     headless = true;
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   environment.systemPackages = with pkgs; [ docker-compose cifs-utils ];
 
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
-
-  networking.firewall = {
-    allowedTCPPorts = [ 445 139 ];
-    allowedUDPPorts = [ 137 138 ];
-  };
 
   powerManagement = {
     enable = true;
@@ -143,13 +136,3 @@
   };
 
 }
-
-# networking.hostName = "nixos"; # Define your hostname.
-# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-# The global useDHCP flag is deprecated, therefore explicitly set to false here.
-# Per-interface useDHCP will be mandatory in the future, so this generated config
-# replicates the default behaviour.
-#  networking.useDHCP = false;
-#  networking.interfaces.ens192.useDHCP = true;
-

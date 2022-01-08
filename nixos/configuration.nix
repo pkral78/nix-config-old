@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./networking.nix
     ./backup.nix
     ../modules/settings.nix    
     "${

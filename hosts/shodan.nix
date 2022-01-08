@@ -14,13 +14,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "shodan";
-  networking.networkmanager.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
+  networking.firewall.trustedInterfaces = [ "enp0s31f6" "wlp82s0" ];
+  
   environment.systemPackages = with pkgs; [
     podman-compose
     dropbox-cli
@@ -45,21 +40,6 @@
   };
 
   services.fwupd.enable = true;
-
-  networking.extraHosts = ''
-    #1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
-    10.30.10.10 gitlab.wn-cz.local
-    10.30.0.63 jira.wn-cz.local
-    10.30.0.69 confluence.wn-cz.local
-  '';
-
-  networking.firewall = {
-    allowedTCPPorts = [ 17500 ];
-    # 5678 - Cisco Discovery Protocol
-    # 20561 - MAC Telnet
-    allowedUDPPorts = [ 17500 5678 ];
-    trustedInterfaces = [ "enp0s31f6" "wlp82s0" ];
-  };
 
   services.xserver = {
     enable = true;

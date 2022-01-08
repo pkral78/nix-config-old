@@ -12,23 +12,13 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  #networking.hostId = "aca3f499";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
+  networking.hostName = "cyberjack";
+  #networking.hostId = "aca3f499";
   networking.interfaces.enp0s25.useDHCP = true;
   networking.interfaces.wlp4s0.useDHCP = true;
   networking.interfaces.wwp0s20u10i6.useDHCP = true;
-
-  networking.hostName = "cyberjack";
-  networking.networkmanager.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.trustedInterfaces = [ "enp0s31f6" "wlp82s0" ];
 
   environment.systemPackages = with pkgs; [
     podman-compose
@@ -54,21 +44,6 @@
   };
 
   services.fwupd.enable = true;
-
-  networking.extraHosts = ''
-    #1.2.3.4 jetbrains.com www.jetbrains.com account.jetbrains.com www-weighted.jetbrains.com
-    10.30.10.10 gitlab.wn-cz.local
-    10.30.0.63 jira.wn-cz.local
-    10.30.0.69 confluence.wn-cz.local
-  '';
-
-  networking.firewall = {
-    allowedTCPPorts = [ 17500 ];
-    # 5678 - Cisco Discovery Protocol
-    # 20561 - MAC Telnet
-    allowedUDPPorts = [ 17500 5678 ];
-    trustedInterfaces = [ "enp0s31f6" "wlp82s0" ];
-  };
 
   services.xserver = {
     enable = true;
