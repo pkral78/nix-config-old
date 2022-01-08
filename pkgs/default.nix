@@ -7,6 +7,6 @@
   gitlint = super.callPackage gitlint/default.nix { };
   cmake-stable = super.libsForQt5.callPackage cmake-stable/default.nix { };
   esp32-toolchain = super.callPackage esp32-toolchain/default.nix { };
-  eap-jetbrains =
-    super.callPackage clion/default.nix { jdk = super.pkgs.jetbrains.jdk; };
+  jetbrains-eap =
+    super.callPackage jetbrains/default.nix { jdk = super.pkgs.jetbrains.jdk; };
 })
