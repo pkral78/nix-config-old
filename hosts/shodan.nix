@@ -1,6 +1,6 @@
 { config, pkgs, ... }: rec {
   imports = [
-    ../nixos/configuration.nix
+    ../config/common.nix
     ../hardware/thinkpad-p1.nix
     ../modules/settings.nix
   ];

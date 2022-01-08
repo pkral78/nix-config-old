@@ -1,6 +1,6 @@
 { config, pkgs, ... }: rec {
   imports = [
-    ../nixos/configuration.nix
+    ../config/common.nix
     ../hardware/esxi-nuc.nix
     ../modules/settings.nix
   ];
