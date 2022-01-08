@@ -67,6 +67,7 @@
     dos2unix
     nmap
     borgbackup
+    rnix-lsp
   ];
 
   nix.extraOptions = ''
