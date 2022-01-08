@@ -53,6 +53,8 @@ in with pkgs.lib; {
     alacritty
     neovim
     stm32cubemx
+    ledger-live-desktop
+  ];
 
 
   programs.tmux = {

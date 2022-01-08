@@ -98,14 +98,15 @@
   security.sudo.wheelNeedsPassword = false;
 
   #programs.zsh.enable = true;
-
+  users.groups.plugdev = {};
+  
   users.mutableUsers = false;
   users.users.${config.settings.username} = {
     isNormalUser = true;
     createHome = true;
     home = "/home/${config.settings.username}";
     description = "${config.settings.name}";
-    extraGroups = [ "audio" "docker" "networkmanager" "wheel" "dialout" ];
+    extraGroups = [ "audio" "docker" "networkmanager" "wheel" "dialout" "plugdev"];
     hashedPassword =
       "$6$EQGBQvubTZ$um26okodYC7rw8SwnJToA.2UxawxO7ZDuf3KsCvTXbDIscDcmTxfx/YzQNYc0EEntbXGSjFA79nuzO5kaNeIz0";
     uid = 1000;

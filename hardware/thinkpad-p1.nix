@@ -73,6 +73,7 @@
 
     #nitrokey.enable = true;
     #nitrokey.group = "wheel";
+    ledger.enable = true;
 
     bumblebee.enable = false;
 
