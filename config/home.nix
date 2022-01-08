@@ -11,6 +11,7 @@ in with pkgs.lib; {
     atuin
     autojump
     bc
+    bat
     file
     coreutils
     ffmpeg
