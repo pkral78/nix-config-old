@@ -98,6 +98,8 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  programs.wireshark.enable = true;
+  
   #programs.zsh.enable = true;
   users.groups.plugdev = {};
   
@@ -107,7 +109,7 @@
     createHome = true;
     home = "/home/${config.settings.username}";
     description = "${config.settings.name}";
-    extraGroups = [ "audio" "docker" "networkmanager" "wheel" "dialout" "plugdev"];
+    extraGroups = [ "audio" "docker" "networkmanager" "wheel" "dialout" "plugdev" "wireshark"];
     hashedPassword =
       "$6$EQGBQvubTZ$um26okodYC7rw8SwnJToA.2UxawxO7ZDuf3KsCvTXbDIscDcmTxfx/YzQNYc0EEntbXGSjFA79nuzO5kaNeIz0";
     uid = 1000;
