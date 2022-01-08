@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ../modules/settings.nix
+    ./backup.nix
+    ../modules/settings.nix    
     "${
       builtins.fetchTarball
       "https://github.com/rycee/home-manager/archive/master.tar.gz"
@@ -65,6 +66,7 @@
     traceroute
     dos2unix
     nmap
+    borgbackup
   ];
 
   nix.extraOptions = ''
