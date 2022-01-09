@@ -47,11 +47,11 @@
 
   users.extraGroups.vboxusers.members = [ "${config.settings.username}" ];
   services.fwupd.enable = true;
-
+  services.getty.autologinUser = "${config.settings.username}";
 
   services.xserver = {
     enable = true;
-    autorun = false;
+    autorun = true;
     layout = "us";
     xkbOptions = "eurosign:e";
     #    autoRepeatDelay = 250;
@@ -73,7 +73,7 @@
     };
 
     gdm = {
-      enable = true;
+      enable = false;
       wayland = false;
       autoSuspend = false;
     };
@@ -199,8 +199,8 @@
       remmina
       tilda
       thunderbird
-      #libreoffice-fresh
-      libreoffice
+      libreoffice-fresh
+      #libreoffice
       vlc
       wine
       tdesktop
