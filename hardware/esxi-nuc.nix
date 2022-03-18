@@ -16,10 +16,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/87d2c2d6-dbae-4305-8adf-a76d12d6a646";
-    fsType = "ext4";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/87d2c2d6-dbae-4305-8adf-a76d12d6a646";
+      fsType = "ext4";
+    };
+    
+  fileSystems."/nix" = 
+    { device = "/dev/disk/by-uuid/7fc04bff-452a-45f3-84b1-9067f54389b2";
+      fsType = "ext4";
+    };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/E17A-A6CA";
