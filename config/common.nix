@@ -49,7 +49,8 @@
     git
     gnupg
     mc
-    vim
+    neovim
+    kakoune
     wget
     xorg.xkill
     usbutils
