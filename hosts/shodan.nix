@@ -29,6 +29,8 @@
     imagemagick
     zstd
     sqlite
+    lshw
+    read-edid
   ];
 
   virtualisation = {
