@@ -8,7 +8,6 @@ in with pkgs.lib; {
 
   home.packages = with pkgs; [
     antibody
-    atuin
     autojump
     bc
     bat
@@ -20,7 +19,6 @@ in with pkgs.lib; {
     ispell
     jq
     killall
-    openjdk8
     pv
     python39
     stdenv
@@ -36,24 +34,12 @@ in with pkgs.lib; {
     openssl
     exiftool
     pdftk
-    trezor-suite
-    sqlitebrowser
-    zim
-    duplicacy
     openvpn
-    jetbrains.pycharm-community
-    jetbrains.idea-community
-    jetbrains.webstorm
-    android-studio
     opensc
-    discord
     gopass
     envsubst
     nixfmt
-    alacritty
     neovim
-    stm32cubemx
-    ledger-live-desktop
   ];
 
 

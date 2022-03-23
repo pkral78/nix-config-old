@@ -205,6 +205,19 @@
       wine
       tdesktop
       wireshark
+
+      alacritty
+      openjdk8
+      discord
+      sqlitebrowser
+      zim
+      stm32cubemx
+      trezor-suite
+      ledger-live-desktop
+      jetbrains.pycharm-community
+      jetbrains.idea-community
+      jetbrains.webstorm
+      android-studio
     ];
 
 
