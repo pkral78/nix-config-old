@@ -70,6 +70,7 @@
     nmap
     borgbackup
     rnix-lsp
+    cloud-utils
   ];
 
   nix.extraOptions = ''
