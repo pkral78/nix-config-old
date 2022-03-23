@@ -184,62 +184,6 @@
    };
   };
 
-  services.samba = {
-    enable = true;
-
-    securityType = "user";
-
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = %h server (Samba)      
-      passdb backend = tdbsam:${builtins.toPath ../private/passdb.tdb}
-      map to guest = Bad User
-      load printers = no
-      ntlm auth = yes  
-      printing = bsd
-      printcap name = /dev/null
-      disable spoolss = yes
-      disable netbios = yes
-      server role = standalone
-      server services = -dns, -nbt
-      smb ports = 445
-      ;name resolve order = hosts
-      log level = 3
-      hosts allow = 192.168.88.0/24 
-      hosts deny = 0.0.0.0/0
-      ;interfaces = 192.168.11.0/24 10.0.0.0/24
-      ;bind interfaces only = yes
-      create mask = 0664
-      directory mask = 0775
-      veto files = /.DS_Store/
-      nt acl support = no
-      inherit acls = yes
-      ea support = yes
-      vfs objects = catia fruit streams_xattr recycle
-      acl_xattr:ignore system acls = yes
-      recycle:repository = .recycle
-      recycle:keeptree = yes
-      recycle:versions = yes
-    '';
-
-    shares = {
-      # homes = {
-      #   browseable = "no";  # note: each home will be browseable; the "homes" share will not.
-      #   "read only" = "no";
-      #   "guest ok" = "no";
-      # };
-      public = {
-        path = "/home/share";
-        browseable = "yes";
-        "writable" = "yes";
-        "valid users" = "share";
-        "hide dot files" = "no";
-        "force user" = "nobody";
-        "force group" = "nogroup";
-      };
-    };
-  };
-
   # mDNS
   #
   # This part may be optional for your needs, but I find it makes browsing in Dolphin easier,
