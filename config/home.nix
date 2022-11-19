@@ -241,7 +241,7 @@ in with pkgs.lib; {
     history = {
       size = 10000000;
       save = 10000000;
-      path = ".config/zsh/.zsh_history";
+      path = "$HOME/.config/zsh/.zsh_history";
       expireDuplicatesFirst = true;
       share = true;
       extended = true;
@@ -376,6 +376,7 @@ in with pkgs.lib; {
      };
   */
 
+  home.stateVersion = "21.11";
   home.file = {
     ".config/zsh/.shared.zshrc" = {
       text = ''
