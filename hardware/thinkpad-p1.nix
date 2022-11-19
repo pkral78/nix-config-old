@@ -12,7 +12,7 @@
     [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [ "msr.allow_writes=on" ];
 
   fileSystems."/" = {
@@ -83,10 +83,10 @@
         #      linuxPackages.nvidia_x11.out
         vaapiIntel
         vaapiVdpau
-        #      libvdpau-va-gl
+        libvdpau-va-gl
       ];
       driSupport = true;
-      driSupport32Bit = true;
+      #driSupport32Bit = true;
       #    extraPackages32 = with pkgs; [
       #      linuxPackages.nvidia_x11.lib32
       #    ];
