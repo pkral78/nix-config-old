@@ -139,34 +139,6 @@
     cpuFreqGovernor = "ondemand";
   };
 
-  fileSystems."/mnt/nas" = {
-    device = "//nas/share";
-    fsType = "cifs";
-    options = [
-      "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${
-        toString ../private/smb_creds_nas
-      },uid=nobody,gid=nogroup,iocharset=utf8,noperm"
-    ];
-  };
-
-  fileSystems."/mnt/share" = {
-    device = "//photon/public";
-    fsType = "cifs";
-    options = [
-      "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,credentials=${
-        toString ../private/smb_creds_share
-      },uid=nobody,gid=nogroup,iocharset=utf8,noperm"
-    ];
-  };
-
-  fileSystems."/mnt/omsquare" = {
-    device = "//share.omsquare.com/public";
-    fsType = "cifs";
-    options = [
-      "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,guest,uid=nobody,gid=nogroup,iocharset=utf8,noperm"
-    ];
-  };
-
   # shodan specific packages
   home-manager.users.${config.settings.username} = {
 
