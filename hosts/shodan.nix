@@ -33,13 +33,19 @@
     read-edid
   ];
 
+
   virtualisation = {
     #      containers.users = [ "pkral" ];
     podman = {
       enable = true;
       dockerCompat = true;
     };
+    virtualbox = {
+       host.enable = true;
+       host.enableExtensionPack = true;
+    };
   };
+
 
   services.fwupd.enable = true;
 
