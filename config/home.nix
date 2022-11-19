@@ -40,6 +40,9 @@ in with pkgs.lib; {
     envsubst
     nixfmt
     neovim
+    lsd
+    nixpkgs-fmt
+    nil
   ];
 
 

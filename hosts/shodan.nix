@@ -178,6 +178,7 @@
       jetbrains.idea-community
       jetbrains.webstorm
       android-studio
+      teams
     ];
 
     programs.alacritty = {
