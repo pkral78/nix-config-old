@@ -94,7 +94,8 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.pcscd.enable = false;
-
+  services.flatpak.enable = true;
+ 
   # Required because /run/user/1000 tempfs is too small for docker
   services.logind.extraConfig = ''
     RuntimeDirectorySize=8G
