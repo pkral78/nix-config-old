@@ -4,11 +4,8 @@
   imports = [
     ./networking.nix
     ./backup.nix
-    ../modules/settings.nix    
-    "${
-      builtins.fetchTarball
-      "https://github.com/rycee/home-manager/archive/master.tar.gz"
-    }/nixos"
+    ../modules/settings.nix
+    <home-manager/nixos>
   ];
 
   nixpkgs.config = import ../config/nixpkgs.nix;
