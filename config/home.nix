@@ -92,7 +92,7 @@ in with pkgs.lib; {
       gl = "log --oneline --graph";
       pullall = "!git pull --rebase && git submodule update --init --recursive";
     };
-    ignores = [ ".#*" "*.desktop" "*.lock" ];
+    ignores = [ ".#*" "*.desktop" ];
     extraConfig = {
       branch.autosetuprebase = "never";
       push.default = "simple";
